@@ -27,8 +27,8 @@ pipeline {
           powershell '''
             # Do not fail the stage on non-terminating errors from native commands
             $ErrorActionPreference = "Continue"
-            $bucketBase = 'gl-capstone-project-pan-2025'
-            $table  = 'gl-capstone-project-pan-2025'
+            $bucketBase = 'gl-devops-academy-project-rrv'
+            $table  = 'gl-devops-academy-project-rrv'
             $region = $env:AWS_REGION
             $account = $(aws sts get-caller-identity --query Account --output text 2>$null)
             if (-not $account) { throw "Unable to resolve AWS account id" }
@@ -142,8 +142,8 @@ pipeline {
             powershell '''
               $ErrorActionPreference = "Stop"
               # Compute backend bucket/table same as ensure stage
-              $bucketBase = 'gl-capstone-project-pan-2025'
-              $table  = 'gl-capstone-project-pan-2025'
+              $bucketBase = 'gl-devops-academy-project-rrv'
+              $table  = 'gl-devops-academy-project-rrv'
               $account = $(aws sts get-caller-identity --query Account --output text)
               if (-not $account) { throw "Unable to resolve AWS account id" }
               $bucket = $bucketBase
