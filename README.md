@@ -50,7 +50,7 @@ This repository delivers a simple web app (Nginx + static UI) through a CI/CD pi
 ## Local kubectl context
 Set kubeconfig to your cluster (if testing locally):
 ```
-aws eks update-kubeconfig --name capstone-project-eks-cluster --region ap-south-1
+aws eks update-kubeconfig --name gl-devops-academy-batch1-project-eks-cluster --region ap-south-1
 ```
 
 ## Destroy capability
