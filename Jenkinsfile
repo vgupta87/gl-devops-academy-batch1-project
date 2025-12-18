@@ -134,7 +134,7 @@ pipeline {
 
     stage('Terraform Init/Plan/Apply') {
       steps {
-        dir('infra') {
+        dir('infrastructure') {
           withCredentials([
             string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_ACCESS_KEY_ID'),
             string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY')
@@ -182,8 +182,8 @@ pipeline {
             # Try to auto-detect repo URL from Terraform outputs; fallback to parameter if not found
             $repoParam = $env:ECR_REPO
             $repoOut = $null
-            if (Test-Path 'infra') {
-              Push-Location infra
+            if (Test-Path 'infrastructure') {
+              Push-Location infrastructure
               try {
                 $json = terraform output -json ecr_repo_urls 2>$null
                 if ($LASTEXITCODE -eq 0 -and $json) {

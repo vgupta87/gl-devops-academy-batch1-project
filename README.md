@@ -73,7 +73,7 @@ aws eks update-kubeconfig --name capstone-project-eks-cluster --region ap-south-
 ## Destroy capability
 - The pipeline’s destroy capability has been disabled deliberately to prevent accidental deletion
 - `Jenkinsfile.destroy` is a no-op and exits with an error if triggered
-- If you need full teardown later, consider switching Terraform backend to S3 and running `terraform destroy` manually from `infra/`
+- If you need full teardown later, consider switching Terraform backend to S3 and running `terraform destroy` manually from `infrastructure/`
 
 ## Troubleshooting
 - ECR login 400/“no basic auth credentials” → verify credentials, region, time sync, and proxy rules
@@ -91,7 +91,7 @@ aws eks update-kubeconfig --name capstone-project-eks-cluster --region ap-south-
 - Jenkins pipeline with:
   - S3+DynamoDB Terraform backend ensure
   - SAST (Trivy fs/image) and DAST (ZAP baseline, non-blocking)
-  - End-to-end build → infra → deploy → test flow
+  - End-to-end build → infrastructure → deploy → test flow
 
 ## Maintainers
 Vivek, Rajesh, and Ravi
