@@ -33,7 +33,7 @@ variable "azs" {
 
 variable "cluster_name" {
   type        = string
-  default     = "capstone-project-eks-cluster"
+  default     = "gl-devops-academy-batch1-project-eks-cluster"
 }
 
 variable "eks_version" {
@@ -75,5 +75,5 @@ variable "ssh_cidr" {
 variable "ecr_repositories" {
   type        = list(string)
   description = "ECR repositories to create"
-  default     = ["gl-capstone-project-pan-repo"]
+  default     = ["gl-devops-academy-batch1-project-repo"]
 }
