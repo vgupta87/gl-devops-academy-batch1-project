@@ -25,8 +25,8 @@ This repository delivers a simple web app (Nginx + static UI) through a CI/CD pi
 
 ## Pipeline parameters
 - `AWS_REGION` (default: `ap-south-1`)
-- `ECR_REPO` (default: `gl-capstone-project-pan-repo`)
-- `CLUSTER_NAME` (default: `capstone-project-eks-cluster`)
+- `ECR_REPO` (default: `gl-devops-academy-batch1-project-repo`)
+- `CLUSTER_NAME` (default: `gl-devops-academy-batch1-project-eks-cluster`)
 
 ## How to run
 1. Run the Jenkins job with defaults
@@ -53,23 +53,6 @@ Set kubeconfig to your cluster (if testing locally):
 aws eks update-kubeconfig --name capstone-project-eks-cluster --region ap-south-1
 ```
 
-## App UI
-- TODO
-
-## Cost notes
-- ELB and NAT Gateway incur charges while running
-- To lower costs without removing infra:
-  - Delete Service: `kubectl delete svc nginx-service`
-  - Scale deployment to 0: `kubectl scale deploy nginx-deployment --replicas=0`
-  - Scale node group to 0 instances (managed node group):
-    ```
-    aws eks update-nodegroup-config \
-      --cluster-name capstone-project-eks-cluster \
-      --nodegroup-name capstone-nodes \
-      --scaling-config minSize=0,desiredSize=0,maxSize=1 \
-      --region ap-south-1
-    ```
-
 ## Destroy capability
 - The pipeline’s destroy capability has been disabled deliberately to prevent accidental deletion
 - `Jenkinsfile.destroy` is a no-op and exits with an error if triggered
@@ -85,8 +68,8 @@ aws eks update-kubeconfig --name capstone-project-eks-cluster --region ap-south-
 ## What this repo creates
 - VPC with 2 public + 2 private subnets across 2 AZs, IGW, 1 NAT, route tables
 - Security Groups for HTTP(80) and SSH(22-from-CIDR)
-- EKS cluster (`capstone-project-eks-cluster`) + managed node group
-- ECR repo (`gl-capstone-project-pan-repo`) with scan-on-push
+- EKS cluster (`gl-devops-academy-batch1-project-eks-cluster`) + managed node group
+- ECR repo (`gl-devops-academy-batch1-project-repo`) with scan-on-push
 - Kubernetes manifests (namespace `app`, deployment, services) and Classic ELB exposure
 - Jenkins pipeline with:
   - S3+DynamoDB Terraform backend ensure
